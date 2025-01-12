@@ -2,7 +2,7 @@
 
 I'm currently a student pursuing a degree in Computer Science
 
-I'm working on my C/C++ skills at the moment focusing particularly on Data Structures and Algorithms. I'm also working through Harvard's CS50x right now.
+I'm working on my C/C++ skills at the moment, focusing particularly on Data Structures and Algorithms. I'm also working through Harvard's CS50x right now.
 
 I love anything that interlaces finance and technology and aspire to be a quantitative trader (hence the username!)
 
