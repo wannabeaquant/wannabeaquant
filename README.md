@@ -1,6 +1,6 @@
 ## Hi there 👋
 
-I'm currently a student pursuing a degree in Computer Science
+I'm pursuing a degree in Computer Science right now
 
 I'm working on my C/C++ skills at the moment, focusing particularly on Data Structures and Algorithms. I'm also working through Harvard's CS50x right now.
 
