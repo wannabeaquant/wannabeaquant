@@ -1,97 +1,143 @@
-The write was blocked as a sensitive file. The content is ready — here it is in full so you can save it yourself or approve the write:
-
----
-
-```markdown
-# Weekly Pattern Review — 2026-05-24
+# Weekly Pattern Review — 2026-05-31
 
 ## Repos Analyzed This Week
 | Repo | Commits | Format Score | Status |
 |------|---------|--------------|--------|
-| wannabeaquant/Aperture | 29 | 3/5 | ACTIVE |
-| wannabeaquant/codity-pr-context | 6 | 5/5 | ACTIVE |
-| wannabeaquant/Bliss | 1 | 5/5 | ACTIVE |
-| wannabeaquant/DHARA | 1 | 5/5 | ACTIVE |
-| wannabeaquant/Elsa-Hyperthon | 1 | 5/5 | ACTIVE |
-| wannabeaquant/GhostLAN | 1 | 5/5 | ACTIVE |
-| wannabeaquant/FactForager | 1 | 5/5 | ACTIVE |
-| wannabeaquant/Portfolio | 6 | 4/5 | ACTIVE |
-| wannabeaquant/ATLAS-v2 | 1 | 5/5 | ACTIVE |
-| wannabeaquant/Polymarket-Bot | 1 | 5/5 | ACTIVE |
+| wannabeaquant/Aperture | 2 | 5/5 | Active |
+| wannabeaquant/aso-audit-agent | 3 | 5/5 | Active — NEW, no CLAUDE.md |
+| wannabeaquant/pr-review-context | 14 | 3/5 | Active — NEW, no CLAUDE.md |
+| wannabeaquant/Bliss | 1 | 5/5 | Active |
+| wannabeaquant/DHARA | 1 | 5/5 | Active |
+| wannabeaquant/Elsa-Hyperthon | 1 | 5/5 | Active |
+| wannabeaquant/GhostLAN | 1 | 5/5 | Active |
+| wannabeaquant/FactForager | 1 | 5/5 | Active |
+| wannabeaquant/Portfolio | 1 | 5/5 | Active — NEW, no CLAUDE.md |
+| wannabeaquant/ATLAS-v2 | 1 | 5/5 | Active |
+| wannabeaquant/Polymarket-Bot | 1 | 5/5 | Active |
 
 ## New Projects Detected
-- **wannabeaquant/Portfolio** — no CLAUDE.md found. Needs setup: CLAUDE.md (Next.js 16 + Framer Motion portfolio site), MEMORY.md, ERRORS.md.
+- **wannabeaquant/aso-audit-agent** — Mastra + Claude ASO audit agent. Has README but no CLAUDE.md. Needs setup.
+- **wannabeaquant/pr-review-context** — Hybrid LLM context retrieval for PR review. Has README + DESIGN.md but no CLAUDE.md. Most active repo this week — needs CLAUDE.md urgently.
+- **wannabeaquant/Portfolio** — Only one automated review commit. No CLAUDE.md, no README visible. Needs setup or note that it's a static site.
 
 ## Work Summary
-- **Aperture**: Heavy frontend churn — full site overhaul (gold palette, AI positioning), copy rewrites across all pages, logo redesign for RSVD/Luminar/ROCCS, marquee/ticker polish, contact email swap to personal gmail. Many unformatted commit messages in the logo/ticker work.
-- **codity-pr-context**: Greenfield intern assignment built in one session — hybrid PR context retrieval system (diff parser, fast path, agent path, eval runner). 10/10 tests passing. One correctness fix pass post-initial commit.
-- **Portfolio**: Initial build (Next.js 16, dark terminal aesthetic), redesign to Virgil Abloh brutalist B/W, minor content fix (location, LinkedIn URL).
-- **Bliss, DHARA, Elsa-Hyperthon, GhostLAN, FactForager, ATLAS-v2, Polymarket-Bot**: Meta-only commits — CLAUDE.md setup, session memory, error log initialization.
+- **pr-review-context**: Week's heaviest work. Shipped LLM-based router (Haiku + heuristic fallback), diversity-aware greedy knapsack ranker, name-based git history that survives line shifts, indirect callee detection via `partial()`/`wraps()`, agent scratchpad tool, extended eval script covering 10 additional PR types. Heavy docs pass: trimmed DESIGN.md, added EVAL.md, fixed architecture diagrams, synced README.
+- **aso-audit-agent**: New project built end-to-end — ASO audit agent with Mastra framework and Claude. Two follow-up fixes: correct Claude model ID (`claude-sonnet-4-5`) and API alignment to `@mastra/core@1.37` + `ai@6`.
+- **Aperture**: Only automated weekly session docs commit. No code shipped.
+- All other repos (Bliss, DHARA, Elsa-Hyperthon, GhostLAN, FactForager, Portfolio, ATLAS-v2, Polymarket-Bot): Single automated `docs(review)` commit each — dormant this week.
 
 ## Commit Health
-- **Aperture (3/5)**: ~12 of 29 commits have no conventional format prefix — freeform messages like "Introduce brilliant golden color-tinted marquee logos..." and "Redesign RSVD, Luminar, and ROCCS logos...". The design iteration work is where discipline breaks down. Format score would be 5/5 if these used `feat(website):` or `style(website):` prefixes.
-- **Portfolio (4/5)**: One merge commit (`Merge pull request #1`) breaks format — expected for GitHub-side merges but worth noting.
-- **codity-pr-context**: Batched all files into one initial commit despite incremental writing — caught and logged to ERRORS.md same session.
-- **7 repos with 1 commit each**: All meta/setup commits. Real work hasn't started or is not yet tracked here.
+- **8 of 11 repos have exactly 1 commit** — all automated `docs(review): weekly session notes 2026-05-24`. These are not real work commits; they represent zero active development this week.
+- **pr-review-context format score 3/5**: Two issues. First, `eval` is used as a commit type (`eval: add extended eval script`) — not in the standard type list (`feat|fix|refactor|test|docs|chore|perf`). `test` or `chore` would be correct. Second, two commits are missing the `(scope)` component: `fix: three bugs found in external review` and `docs: fix architecture diagrams`. Format degrades under doc/polish sprints.
+- **aso-audit-agent**: Two `fix` commits immediately after `feat` initial commit — suggests initial build had compatibility issues not caught before first push. Not a commit format problem but a ship-quality signal.
+- **No repos have broken commit format on feat/fix/refactor types** — format discipline holds on code commits, only slips on docs/eval/chore.
 
 ## Patterns Observed This Week
-- **Setup discipline is consistent**: Every active repo now has CLAUDE.md + MEMORY.md + ERRORS.md. The scaffolding habit is solid.
-- **Commit format degrades under rapid UI iteration**: Aperture's logo/ticker sprint had 12 unformatted commits. This pattern will likely repeat on Bliss (mobile UI) and Portfolio. Format discipline holds on backend/logic work (codity, ATLAS, Polymarket all 5/5).
-- **Single-session builds**: codity-pr-context went from zero to complete implementation + eval runner in one session. This is a consistent rapid-prototype pattern — ship fast, do one correctness pass.
-- **Self-correction is occurring**: The batched-commit anti-pattern in codity was caught and logged to ERRORS.md in the same session. The learning loop is working.
-- **Email/contact info still provisional in Aperture**: Three separate commits to fix contact emails (hello@aperture.studio → gmail → aperturecmservices). Suggests the Aperture business identity is still being finalized.
-- **MEMORY.md Decisions tables are populated only where real decisions were made** (codity, Polymarket, ATLAS). Bliss/DHARA/hackathon repos have empty tables — appropriate since no decisions were logged yet.
+- **Work concentrates into 1-2 repos per week while the rest go dormant.** 9 repos had zero real commits. This is expected for a student running parallel projects, but means MEMORY.md "Next Session Priorities" fields are consistently empty — they're not being used.
+- **New repos get built quickly but CLAUDE.md setup lags.** Both `aso-audit-agent` and `pr-review-context` were built and committed this week without CLAUDE.md. The `/init`-based setup from global CLAUDE.md instructions is not being triggered consistently.
+- **Docs commits accumulate on active features.** pr-review-context had 6 docs commits out of 14 — DESIGN.md trim, EVAL.md extraction, README sync, diagram fixes. This is good documentation practice but the commits often lack scope: `docs: fix architecture diagrams` instead of `docs(router): fix architecture diagrams`.
+- **Model ID bugs on new Claude projects.** `aso-audit-agent` needed a fix commit specifically to correct the Claude model ID. This is a recurring new-project hazard when using Mastra or other wrappers that don't validate against the Anthropic API at config time.
+- **eval as a commit type is non-standard and used inconsistently.** Only appeared in pr-review-context. Eval scripts are test-adjacent — `test(eval)` is the correct type.
 
 ## Recurring Issues
-- **Batched commits on greenfield builds**: codity-pr-context logged this explicitly. High risk of repeating on next new-project build. Pattern: write everything, then commit once at the end instead of committing each independently runnable layer.
-- **Commit format breaks on visual/design work**: Aperture this week; Portfolio partially. When iterating fast on UI, the convention to use `feat(scope):` / `style(scope):` gets dropped. No equivalent pattern on backend work.
+- **Non-standard commit types under pressure.** `eval` appeared this week; prior PROFILE.md noted format degrades during "fast visual/UI iteration sprints." Now confirmed it also degrades during doc/eval sprints. The failure mode is dropping `(scope)` and using ad-hoc types, not malformed messages.
+- **New repos missing CLAUDE.md at build time.** This is the second or third occurrence across sessions (PROFILE.md already notes this). The global rule says to run `/init` on new repos, but the pattern is: build first, set up context files later (or never).
 
 ## Proposed Global CLAUDE.md Additions
 ```
-## Commit Format — Visual Work
-- UI/design iteration commits follow the same format rules: `style(scope): <what changed and why>` or `feat(scope): <what changed>`. Freeform prose commit messages are never acceptable, even during fast visual sprints. If you're iterating on logos, layout, or copy, use: `style(website): redesign RSVD logo with vector marks` not the full description as the commit title.
+## New Repo CLAUDE.md Trigger
+- Any session that produces a first commit to a repo with no CLAUDE.md: stop before pushing and run /init (existing codebase) or hand-write CLAUDE.md (greenfield). Do not push initial code without CLAUDE.md in the same commit batch. # evidence: aso-audit-agent, pr-review-context, Portfolio all shipped this week without CLAUDE.md
+
+## Commit Type: eval is not valid
+- Use `test(eval): ...` for evaluation scripts, benchmarks, and scoring runs. Never use `eval` as a standalone type. # evidence: pr-review-context 2026-05-31
 ```
 
 ## Proposed Project-Level CLAUDE.md Updates
 
-### wannabeaquant/Aperture
+### wannabeaquant/pr-review-context
 ```
-## Commit Format Reminder
-All commits must use `<type>(<scope>): <short imperative description>` — including visual/design work.
-Use `style(website):` for CSS/layout changes, `feat(website):` for new UI sections, `fix(website):` for corrections.
-Freeform prose messages (e.g. "Introduce brilliant golden color-tinted...") are not acceptable.
-```
-
-### wannabeaquant/Portfolio
-```
-# Portfolio
+# pr-review-context
 
 ## What This Is
-Personal portfolio site. Next.js 16, Framer Motion, Virgil Abloh brutalist B/W aesthetic (Syne display font, Off-White labeling system).
+Hybrid context retrieval for LLM-powered PR review. Given a PR diff and a repo checkout, determines what additional context (callees, callers, tests, git history, type defs) to fetch while staying within a token budget.
 
 ## Stack
-- Next.js 16
-- TypeScript
-- Framer Motion
+- Python 3.x
+- Claude (Haiku for routing, Sonnet for agent path)
+- No external database — file-based repo analysis
 
-## Commands
-```bash
-npm install
-npm run dev
-npm run build
+## Architecture
+```
+PR diff → Router (Haiku LLM + heuristic fallback)
+       → Fast Path: all retrievers → rank → pack
+       → Agent Path: Sonnet loop with 10 tools + scratchpad
+       → JSON retrieval plan + review prompt
 ```
 
+## Key Files
+- Router: LLM-based routing via Haiku with heuristic fallback
+- Ranker: diversity-aware greedy knapsack (prevents single-file budget saturation)
+- Git history: name-based log (survives line number shifts + intra-file moves)
+- Callees: detects indirect callees via partial()/wraps() as first-arg names
+- Agent scratchpad: explicit reasoning thread tracking tool
+- EVAL.md: evaluation methodology and PR type coverage
+- DESIGN.md: architecture (~2 pages, canonical reference)
+
+## Commit Conventions
+- Use `test(eval): ...` for evaluation scripts — not `eval:` as a standalone type
+- Always include `(scope)` in docs commits: `docs(router): ...` not `docs: ...`
+
 ## GitHub
-https://github.com/wannabeaquant/Portfolio — push after every session.
+https://github.com/wannabeaquant/pr-review-context
 
 ## Git & Commits
 - Format: `<type>(<scope>): <short imperative description>`
-  - style(layout): ... | feat(section): ... | fix(content): ...
-- Every self-contained working change = one commit. Push after every commit.
+- Every self-contained working change = one commit. Push immediately.
 
 ## Session Memory
 - Read MEMORY.md at session start.
-- On session end: write summary to MEMORY.md.
+- On "session end": write summary to MEMORY.md.
+
+## Error Log
+- Read ERRORS.md before suggesting approaches.
+- Log failures after 2+ attempts to ERRORS.md.
+```
+
+### wannabeaquant/aso-audit-agent
+```
+# aso-audit-agent
+
+## What This Is
+AI-powered App Store Optimization audit agent. Paste any App Store URL → comprehensive audit with weighted scores, competitor benchmarking, quick wins, and before/after recommendations.
+
+## Stack
+- TypeScript / Node.js
+- Mastra framework (`@mastra/core@1.37`)
+- Claude (`claude-sonnet-4-5` — exact model ID; do NOT use shorthand)
+- `ai@6` SDK
+- iTunes Search API (no auth)
+
+## Commands
+```bash
+cp .env.example .env   # add ANTHROPIC_API_KEY
+npm install
+npm run dev            # http://localhost:4111
+```
+
+## Critical Facts
+- Model ID is `claude-sonnet-4-5` — this burned a fix commit on initial build. Always verify against Anthropic API docs before wiring a new model string into Mastra config.
+- Mastra API surface changes frequently — pin `@mastra/core` and `ai` versions and check compat on upgrade.
+
+## GitHub
+https://github.com/wannabeaquant/aso-audit-agent
+
+## Git & Commits
+- Format: `<type>(<scope>): <short imperative description>`
+- Every self-contained working change = one commit. Push immediately.
+
+## Session Memory
+- Read MEMORY.md at session start.
+- On "session end": write summary to MEMORY.md.
 
 ## Error Log
 - Read ERRORS.md before suggesting approaches.
@@ -99,25 +145,17 @@ https://github.com/wannabeaquant/Portfolio — push after every session.
 ```
 
 ## MEMORY.md Entries Suggested
-- **codity-pr-context**: All 7 architectural decisions already logged correctly. No additions needed.
-- **Aperture**: Two decisions worth logging:
-  - `| 2026-05-24 | Full brand pivot to gold palette + AI workflow positioning | Client-facing credibility for AI implementation pitch | Original dark/cinematic aesthetic |`
-  - `| 2026-05-24 | Contact email = aperturecmservices@gmail.com | Domain email not yet set up | hello@aperture.studio (domain not active) |`
-- **Portfolio**: No MEMORY.md exists yet — needs creation with the brutalist aesthetic decision logged.
+- **pr-review-context**: No MEMORY.md exists yet — needs creation. Key decisions to log: (1) LLM routing via Haiku with heuristic fallback chosen over pure heuristic; (2) diversity-aware greedy knapsack over simple top-k ranking to prevent single-file saturation; (3) name-based git log over line-anchor approach for stability across rebases.
+- **aso-audit-agent**: No MEMORY.md exists yet — needs creation. Decision to log: Mastra + Claude chosen as framework stack for ASO agent; `@mastra/core@1.37` + `ai@6` are the pinned compatible versions.
+- All other repos: No new decisions made this week — MEMORY.md entries not warranted.
 
 ## Proposed PROFILE.md Additions
 ```
-- Commit format discipline holds on backend/logic work but degrades during fast visual/UI iteration sprints. Flag this before starting any frontend-heavy session.
-- Builds greenfield projects in single focused sessions — full implementation + one correctness pass. Does not spread greenfield work across multiple sessions.
-- Self-correction loop is active: catches own process violations (batched commits, etc.) and logs them to ERRORS.md in the same session.
+- Format discipline degrades not just during frontend sprints but also during doc/polish/eval sprints — `(scope)` gets dropped from docs commits and ad-hoc types like `eval` appear. Flag this at the start of any session that is primarily docs or evaluation work, not just UI work. # confirmed 2026-05-31 in pr-review-context
+- New repos get built in a single session (consistent with greenfield pattern) but CLAUDE.md setup is deferred or skipped. This has now occurred 3+ times. The build instinct is strong; the context-file instinct is weak. Auto-trigger CLAUDE.md setup check at first commit of any new repo.
 ```
 
 ## Next Week Watch List
-- **Aperture commit format**: Watch whether the freeform message pattern continues in the next design sprint or if the global rule addition corrects it.
-- **codity-pr-context final push**: Agent path eval (PR2/PR3) needs `ANTHROPIC_API_KEY` run + eval outputs added before submission deadline — currently blocking.
-- **Bliss and ATLAS-v2 first real commits**: Both repos are scaffolded but have no feature commits yet. Watch whether rapid-prototype pattern kicks in or if both stay dormant another week.
-```
-
----
-
-If you want me to write this to `C:\Users\athar\.claude\WEEKLY_REVIEW.md`, approve the file write when prompted and I'll retry. The path is inside `.claude` which triggered the sensitive-file guard.
+- **pr-review-context CLAUDE.md + MEMORY.md**: Most active repo this week ships without context files. If another session starts here without them, the pattern is entrenched — prioritize setup at next session open.
+- **aso-audit-agent stability**: Two fix commits immediately after initial build suggests Mastra API surface is fragile. Watch for a third fix on next touch — if it happens, log the specific API gotchas to ERRORS.md.
+- **Dormant project reactivation**: ATLAS-v2, Polymarket-Bot, and Bliss all have populated MEMORY.md/ERRORS.md but zero code commits this week. If any reactivate, verify MEMORY.md "Next Session Priorities" was written — those fields are currently blank across all three, which defeats the purpose.
